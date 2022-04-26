@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <body>
+            
+            <!--Templates are not use to often these days, are special cases
+                for them but in the most part django is used to create API's
+                that return data, not html content-->
+            {%if name %}  <!--If name is set, it can render here-->
+            <h1>My name is {{name}}</h1>
+            <p>That's my frist django project :)</p>
+            {% else %}  
+            <h1>Hello World</h1>
+            <p>That's my frist django project :)</p>
+            {% endif %}
+            <!--Django is modular, so u can easily replace django's default template engine-->
+        </body>
+    </head>
+</html>
+

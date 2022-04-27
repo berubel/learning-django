@@ -1,0 +1,27 @@
+What is an API?
+
+Application Programming Interface
+
+Application == An actual app, it's something that is functional
+Programming == We're programming it
+Interface = something that allows two thing to communicate to each other
+
+So the way that you allow these processes to comunicate is by programming an application that allowa them 
+to then send and receive messages.
+
+Why use / build an API?
+
+If:
+* you have some sort of application that you'd like to share with other 
+* you'd like other people to integrate with and use in their services
+* you just have multiple services that need to communicate with one central service.
+
+One point about API's: That it only provides the data that you want to render
+That data tipically return a JSON response, that means it's a kind of like dictionary
+and it has keys and values, and that payload.
+
+** IMPORTANT **
+
+An API only returning you the data and because API is only send and receive data
+that's what allowa you to integrate with multiple services, because that's all you
+really care about is getting the data or submitting data to that service.

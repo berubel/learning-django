@@ -6,7 +6,7 @@ Application == An actual app, it's something that is functional
 Programming == We're programming it
 Interface = something that allows two thing to communicate to each other
 
-So the way that you allow these processes to comunicate is by programming an application that allowa them 
+So the way that you allow these processes to comunicate is by programming an application that allows them 
 to then send and receive messages.
 
 Why use / build an API?

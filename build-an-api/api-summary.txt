@@ -25,3 +25,10 @@ and it has keys and values, and that payload.
 An API only returning you the data and because API is only send and receive data
 that's what allowa you to integrate with multiple services, because that's all you
 really care about is getting the data or submitting data to that service.
+
+Working with serilizers
+
+Serializer is basically a structure representation similar to a model or form and it 
+represents the data that you want to return in a JSON format or execpt in JSON format.
+
+We use serilizers to transform our models into JSON.

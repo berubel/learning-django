@@ -13,21 +13,29 @@ from .models import Post
 
 class TestView(APIView):
     def get(self, request, *args, **kwargs):
-        data = {
-            'name': 'john',
-            'age': 23
-        }
-        return Response(data)
+        #data = {
+        #    'name': 'john',
+        #    'age': 23
+        #}
+        # Return a list of the posts
+        # Using a serializer when we retrieved a data
+        qs = Post.objects.all()
+        post =  qs.first() # returning the first instance in the database
+       # serializer = PostSerializer(qs, many=True) # returning many instances (list of dictionaries)
+        serializer = PostSerializer(post) # returning one instance (a dictionary)
+        return Response(serializer.data)
 
     # Using a serializer when we received a data
 
-    def post(self, request, *args, **kwargs):
+    # In post we make sure that data we're receiving 
+    # is valid especially when we want to manipulate the database
+
+    def post(self, request, *args, **kwargs): 
         serializer = PostSerializer(data = request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save() # save a instance of a model
             return Response(serializer.data)
         return Response(serializer.errors)
-
 
 # def test_view(request): # That is a dictionary then is converted in a Json payload
 #    data = {

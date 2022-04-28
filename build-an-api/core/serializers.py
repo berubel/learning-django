@@ -23,5 +23,7 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = (
-            'title', 'description'
+            'title', 
+            'description',
+            'owner' # Return one cuz it's a primery key of the users, in this case is one user
         )

@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.authtoken.views import obtain_auth_token
+# obtain_auth_token is the view that will return the token for a user
+# when we send the username and password so basically like a login view
 
 from core.views import TestView #, test_view
 
@@ -22,4 +25,5 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
     path('', TestView.as_view(), name='test'), # we have to say as view because it's a class space
+    path('api/token', obtain_auth_token, name='obtain-token') # returns the token if the username and password are correct
 ]

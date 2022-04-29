@@ -1,4 +1,4 @@
-What is an API?
+# What is an API?
 
 Application Programming Interface
 
@@ -26,9 +26,22 @@ An API only returning you the data and because API is only send and receive data
 that's what allowa you to integrate with multiple services, because that's all you
 really care about is getting the data or submitting data to that service.
 
-Working with serilizers
+# Working with serilizers
 
 Serializer is basically a structure representation similar to a model or form and it 
 represents the data that you want to return in a JSON format or execpt in JSON format.
 
 We use serilizers to transform our models into JSON.
+
+# Authentication
+
+Django Rest framework provides some tools to achieve what authentication is meant to 
+do but there are some third-party packages that the Django Rest framework recommends.
+
+The tokens is what we going to use to authenticate ourselves in the request.
+
+-- Commands
+
+* flush = clean the database
+* createsuperuse = create a new admin user
+* drf_create_token username = create a token for the given user 

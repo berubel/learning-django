@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken', # Added this, we need to make some migrations
     'core'
 ]
 
@@ -123,3 +124,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# In here we specify a bunch of keys wich represents setting in the Django Rest framework
+# This is one way of authenticating our users by default Django uses the basic authentication.
+# Every time you create a user or log in, your token is refreshed and that token is kind of
+# like your API key that allows you to send requests instead of needing to pass in your username
+# and password every single time you would then just use that token to authenticate yourself
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication'
+    ]
+}

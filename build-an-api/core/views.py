@@ -4,14 +4,27 @@ from django.http import JsonResponse
 # third party imports
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+
+# Different kind of permissions that you can specify on API endpoint
+# AllowAny = you not need to be authenticated
+# IsAdminUser, IsAuthenticated, IsAuthenticatedOrReadyOnly
+
 from .serializers import PostSerializer
 from .models import Post
+
 
 # Create your views here.
 
 # An API view is something that we can inherit in our own classes 
 
 class TestView(APIView):
+    # permition_classes is a property we get acess to when we inherit from APIView and other rappers
+    # Is authenticated means no matter wich method were sending as a request method method so
+    # wether it's get or post we will be authenticate in order for this view, otherwise we'll just
+    # get an authenticated error.
+    permission_classes = (IsAuthenticated, )
+
     def get(self, request, *args, **kwargs):
         #data = {
         #    'name': 'john',
@@ -21,7 +34,7 @@ class TestView(APIView):
         # Using a serializer when we retrieved a data
         qs = Post.objects.all()
         post =  qs.first() # returning the first instance in the database
-       # serializer = PostSerializer(qs, many=True) # returning many instances (list of dictionaries)
+        # serializer = PostSerializer(qs, many=True) # returning many instances (list of dictionaries)
         serializer = PostSerializer(post) # returning one instance (a dictionary)
         return Response(serializer.data)
 

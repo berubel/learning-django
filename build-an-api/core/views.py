@@ -28,7 +28,11 @@ from core import serializers
 
 # ListModeLMixin allow you to list a query set
 
-class PostView(mixins.ListModelMixin, generics.GenericAPIView):
+class PostView(
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    generics.GenericAPIView):
+
     # Define some properties are required to make this work
     # first serializing the class (you can also use the method get_serializer_class)
     serializer_class = PostSerializer
@@ -36,9 +40,16 @@ class PostView(mixins.ListModelMixin, generics.GenericAPIView):
     queryset = Post.objects.all()
 
     def get(self, request, *args, **kwargs):
-       
-       
-        return self.list(self, request, *args, **kwargs)
+        return self.list(request, *args, **kwargs)
+    # Override the post method calling the create method inherited of mixins
+    # That allow u to fill a form in the rest framework UI and u can post then it will create an instance
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+    
+    def perform_create(self, serializer):
+        # send an email
+        serializer.save()
+        #return super().perform_create(serializer)
 
 
 """ class TestView(APIView):

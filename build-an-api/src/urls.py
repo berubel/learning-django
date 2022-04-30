@@ -19,14 +19,15 @@ from rest_framework.authtoken.views import obtain_auth_token
 # obtain_auth_token is the view that will return the token for a user
 # when we send the username and password so basically like a login view
 
-from core.views import PostView, PostCreateView, TestView, PostListCreateView # test_view
+from core.views import PostView, PostCreateView, TestView, PostListCreateView, test_view
 
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
-    path('', PostView.as_view(), name='second'), # we have to say as view because it's a class space
-    path('create/', PostCreateView.as_view(), name='third'), # we have to say as view because it's a class space
     path('test/', TestView.as_view(), name='first'), 
-    path('list/',PostListCreateView.as_view(), name='fourth'),
+    path('first-test/', test_view, name='second'), 
+    path('', PostView.as_view(), name='third'), # we have to say as view because it's a class space
+    path('create/', PostCreateView.as_view(), name='fourth'), # we have to say as view because it's a class space
+    path('list/',PostListCreateView.as_view(), name='fifth'),
     path('api/token', obtain_auth_token, name='obtain-token') # returns the token if the username and password are correct
 ]

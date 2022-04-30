@@ -89,7 +89,7 @@ class PostCreateView(mixins.ListModelMixin, generics.CreateAPIView):
 
     def get(self, request, *args, **kwargs):
             return self.list(request, *args, **kwargs)
-            
+
 # Exactly same functionality as the previous ones
 class PostListCreateView(generics.ListCreateAPIView):
     serializer_class = PostSerializer
@@ -129,12 +129,12 @@ class PostListCreateView(generics.ListCreateAPIView):
             return Response(serializer.data)
         return Response(serializer.errors) """
 
-# def test_view(request): # That is a dictionary then is converted in a Json payload
-#    data = {
-#        'name': 'john',
-#        'age': 23
-#    }
-#    return JsonResponse(data)
+def test_view(request): # That is a dictionary then is converted in a Json payload
+    data = {
+        'name': 'john',
+        'age': 23
+    }
+    return JsonResponse(data)
 
     # By default the JSON response only returns a dictionary, but
     # you can pass a list using the safe argument, likes "safe=False"

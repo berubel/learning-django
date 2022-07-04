@@ -9,7 +9,7 @@ class Evento(models.Model):
     data_evento = models.DateTimeField(verbose_name='data do evento')
     data_criacao = models.DateTimeField(auto_now=True, verbose_name= 'data da criação')
     usuario = models.ForeignKey(User, on_delete=models.CASCADE) # on_delete parameter tells django
-                                                                  # what to do if user is deleted
+    local = models.CharField(max_length=100, null=True)                    # what to do if user is deleted
 
     class Meta:
         db_table = 'evento'

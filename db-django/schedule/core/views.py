@@ -10,7 +10,10 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 def evento_local(request, titulo_evento):
-    evento = Evento.objects.get(titulo=titulo_evento)
+    try:
+        evento = Evento.objects.get(titulo=titulo_evento)
+    except Exception:
+        raise Http404()
     return HttpResponse(evento.local)
 
 def login_user(request):
@@ -38,6 +41,14 @@ def lista_eventos(request):
     evento = Evento.objects.filter(usuario=usuario, data_evento__gt=data_atual) #filter by the user and future events
     data = {'eventos': evento}
     return render(request, 'schedule.html', data)
+
+@login_required(login_url='/login/')
+def lista_eventos_historico(request):
+    usuario = request.user
+    data_atual = datetime.now() - timedelta(hours=1)
+    evento = Evento.objects.filter(usuario=usuario, data_evento__lt=data_atual) # events in the past
+    data = {'eventos': evento}
+    return render(request, 'historico.html', data)
 
 @login_required(login_url='/login/')
 def json_lista_evento(request):

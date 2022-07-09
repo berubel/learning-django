@@ -29,3 +29,8 @@ class Evento(models.Model):
             return True
         else:
             return False
+    def get_evento_menos_de_uma_hora(self):
+        if self.data_evento - datetime.now() <= timedelta(hours=1):
+            return True
+        else:
+            return False

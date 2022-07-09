@@ -8,3 +8,4 @@ class EventoAdmin(admin.ModelAdmin):
     list_filter = ('usuario','data_evento') # add a filter to search
 
 admin.site.register(Evento, EventoAdmin)
+

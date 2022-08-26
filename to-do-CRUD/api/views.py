@@ -22,12 +22,14 @@ def api_overview(request):
 def task_list(request):
     tasks = Task.objects.all()
     serializer = TaskSerializer(tasks, many=True)
+
     return Response(serializer.data)
 
 @api_view(['GET'])
 def task_detail(request, id):
     tasks = Task.objects.get(id=id)
     serializer = TaskSerializer(tasks, many=False)
+
     return Response(serializer.data)
 
 @api_view(['POST'])
@@ -48,4 +50,10 @@ def task_update(request, id):
         serializer.save()
 
     return Response(serializer.data)
-    
+
+@api_view(['DELETE'])
+def task_delete(request, id):
+    task = Task.objects.get(id=id)
+    task.delete()
+
+    return Response('Task sucefully delete!')

@@ -11,10 +11,10 @@ from .models import Task
 def api_overview(request):
     api_urls = {
         'List': '/task-list/',
-        'Detail View': '/task-detail/<str:pk>',
+        'Detail View': '/task-detail/<str:id>/',
         'Create': '/task-create/', 
-        'Update': '/task-update/<str:pk>',
-        'Delete': '/task-delete/<str:pk>'
+        'Update': '/task-update/<str:id>/',
+        'Delete': '/task-delete/<str:id>/'
     }
     return Response(api_urls)
 
@@ -22,4 +22,10 @@ def api_overview(request):
 def task_list(request):
     tasks = Task.objects.all()
     serializer = TaskSerializer(tasks, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def task_detail(request, id):
+    tasks = Task.objects.get(id=id)
+    serializer = TaskSerializer(tasks, many=False)
     return Response(serializer.data)
